@@ -15,10 +15,18 @@ class DocumentsController < ApplicationController
   def show
     @document = Document.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render :json => @document }
-    end
+    # ist das dokument derzeit verfügbar?
+    redirect_to documents_path, :notice => 'Das Dokument wird derzeit bearbeitet!' and return if !@document.available
+    
+    # speichern, wer das dokument gezogen hat und das dokument heruntergeladen hat
+    @document.available = false
+    @document.user = current_user
+    @document.save
+    
+   redirect_to @document.asset.url
+   #send_file  @document.asset.path, :type => @document.asset_content_type, :disposition => 'inline' 
+    
+    #redirect_to documents_path
   end
 
   # GET /documents/new
@@ -44,7 +52,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, :notice => 'Document was successfully created.' }
+        format.html { redirect_to documents_path, :notice => 'Document was successfully created.' }
         format.json { render :json => @document, :status => :created, :location => @document }
       else
         format.html { render :action => "new" }
@@ -60,7 +68,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.update_attributes(params[:document])
-        format.html { redirect_to @document, :notice => 'Document was successfully updated.' }
+        format.html { redirect_to documents_path, :notice => 'Document was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
@@ -73,6 +81,10 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1.json
   def destroy
     @document = Document.find(params[:id])
+    
+    @document.asset = nil
+    @document.save
+    
     @document.destroy
 
     respond_to do |format|

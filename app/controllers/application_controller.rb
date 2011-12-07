@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   
   before_filter :authenticate
   
+  helper_method :current_user
+  
   protected
   
   def authenticate
@@ -14,7 +16,10 @@ class ApplicationController < ActionController::Base
         flash.now.alert = "Ungültige Zugangsdaten"
       end
     end
-
+  end
+  
+  def current_user
+    User.find_by_username session[:user] if session[:user]
   end
   
   

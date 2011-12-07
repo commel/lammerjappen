@@ -10,14 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111207202932) do
+ActiveRecord::Schema.define(:version => 20111207205622) do
 
   create_table "documents", :force => true do |t|
     t.string   "name"
-    t.boolean  "available"
+    t.boolean  "available",          :default => true
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "asset_file_name"
+    t.string   "asset_content_type"
+    t.integer  "asset_file_size"
+    t.datetime "asset_updated_at"
   end
 
   create_table "users", :force => true do |t|

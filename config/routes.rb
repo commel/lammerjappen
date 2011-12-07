@@ -1,6 +1,6 @@
 Lammerjappen::Application.routes.draw do
-  get "welcome/index"
+  resources :documents
 
-  root :to => 'welcome#index'
+  root :to => 'documents#index'
   
 end

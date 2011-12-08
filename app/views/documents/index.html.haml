@@ -1,19 +1,23 @@
 %h1
   = t('.title', :username => current_user.username)
 
-%table
-  %tr
-    %th=t('.name')
-    %th=t('.available')
-    %th=t('.download')
-    %th=t('.user')
-    %th=t('.updated')
-    %th=t('.filesize')
-    %th
-    %th
+%nav.documents
+  #sort-by
+    %button=link_to t('.filename'), "#filename"
+    %button=link_to t('.user'), "#user"
+    %button=link_to t('.updated_at'), "#update_at"
+    %button=link_to t('.size'), "#size"
+    %button=link_to t('.available'), "#available"
+  #sort-direction
+    %button=link_to t('.asc'), "#asc"
+    %button=link_to t('.desc'), "#desc"
+  #new
+    %button#new=link_to t('.new'), '#'
+    #upform
+      = render :partial => 'upform', :locals => { :document => Document.new }
 
+#container
   = render :partial => 'document', :collection => @documents
 
 %br
 
-= link_to t('.new'), new_document_path

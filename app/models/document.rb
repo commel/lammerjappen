@@ -5,5 +5,4 @@ class Document < ActiveRecord::Base
   
   validates :asset, :presence => true
   
-  
 end

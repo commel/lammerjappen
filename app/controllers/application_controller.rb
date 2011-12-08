@@ -12,8 +12,6 @@ class ApplicationController < ActionController::Base
       user = User.find_by_username user_name
       if user && user.authenticate(password)
         session[:user] = user_name
-      else
-        flash.now.alert = "Ungültige Zugangsdaten"
       end
     end
   end

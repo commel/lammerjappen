@@ -2,9 +2,28 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 de:
+  activerecord:
+    errors:
+      models:
+        document:
+          attributes:
+            user:
+              blank: "Der Benutzer ist nicht gesetzt!"
   documents:
     index:
       title: "Dokumente für %{username}"
+      filename: "Dateiname"
+      user: "Benutzer"
+      updated_at: "Aktualisierungsdatum"
+      size: "Größe"
+      available: "Verfügbar"
+      asc: "Aufsteigend"
+      desc: "Absteigend"
+      new: "Neues Dokument"
+    document:
+      download: "Herunterladen"
+      free: "Freigeben"
+      upload: "Hochladen"
   number:
     human:
       storage_units:

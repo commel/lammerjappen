@@ -1,3 +1,89 @@
 // Place all the styles related to the documents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background: #FEFEFE;
+  margin: 20px;
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  &:visited {
+    color: #666; }
+  &:hover {
+    color: #fff; } }
+
+#container {
+  height: 80%;
+  margin: auto 0px;
+}
+
+nav.documents {
+  background: #FEFEFE;
+  border: solid 1px #DEDEDE;
+}
+
+.item {
+  width: 250px;
+  background-color: #aabbcc;
+  margin: 10px;
+  text-align: center;
+  padding: 4px;
+  color: #222222;
+}
+
+.item.blocked {
+  border: solid 1px #DEDEDE;
+  background: #EE6363;
+}
+
+.item.available {
+  border: solid 1px #DEDEDE;
+  background: #CAFF70;
+}
+
+.item.filename {
+  font-size: 1.5em;
+  background-color: #aaddee;
+}
+
+.item.blocked .filename {
+  background-color: #8B3A3A;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.item.available .filename {
+  background-color: #556B2F;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.isotope,
+.isotope .isotope-item {
+  /* change duration value to whatever you like */
+  -webkit-transition-duration: 0.8s;
+     -moz-transition-duration: 0.8s;
+       -o-transition-duration: 0.8s;
+          transition-duration: 0.8s;
+}
+
+.isotope {
+  -webkit-transition-property: height, width;
+     -moz-transition-property: height, width;
+       -o-transition-property: height, width;
+          transition-property: height, width;
+}
+
+.isotope .isotope-item {
+  -webkit-transition-property: -webkit-transform, opacity;
+     -moz-transition-property:    -moz-transform, opacity;
+       -o-transition-property:         top, left, opacity;
+          transition-property:         transform, opacity;
+}
+
+#upform {
+  display: none;
+}

@@ -13,6 +13,9 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+  end
+  
+  def download
     @document = Document.find(params[:id])
 
     # ist das dokument derzeit verfügbar?
@@ -23,10 +26,16 @@ class DocumentsController < ApplicationController
     @document.user = current_user
     @document.save
     
-   redirect_to @document.asset.url
-   #send_file  @document.asset.path, :type => @document.asset_content_type, :disposition => 'inline' 
+   redirect_to @document.asset.url    
+  end
+  
+  def free
+    @document = Document.find(params[:id])
+    @document.available = true
+    @document.user = current_user
+    @document.save
     
-    #redirect_to documents_path
+    redirect_to documents_path
   end
 
   # GET /documents/new
@@ -49,6 +58,7 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(params[:document])
+    @document.user = current_user
 
     respond_to do |format|
       if @document.save
@@ -65,7 +75,8 @@ class DocumentsController < ApplicationController
   # PUT /documents/1.json
   def update
     @document = Document.find(params[:id])
-
+    @document.user = current_user
+    
     respond_to do |format|
       if @document.update_attributes(params[:document])
         format.html { redirect_to documents_path, :notice => 'Document was successfully updated.' }

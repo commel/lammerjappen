@@ -2,14 +2,6 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
-  $('.item').click ->
-    document_id = $(this).attr('id').match(/\d+/)
-    available = $('.item#document-' + document_id + ' .available').text()
-    if available is 'true'
-      console.log("Clicked to download!")
-    else
-      console.log("Clicked to upload!")
-
   $('#container').isotope
     layoutMode: 'fitRows'
     sortBy: 'filename'
@@ -21,8 +13,6 @@ jQuery ->
         $elem.find('.user').text()
       time: ($elem) ->
         $elem.find('time.updated_at').text()
-      size: ($elem) ->
-        parseInt( $elem.find('.size').text(), 10 )
       available: ($elem) ->
         $elem.find('.available').text()
 
@@ -45,4 +35,6 @@ jQuery ->
   $('button#new').click ->
     $('#upform').toggle()
 
-
+  $('.actionctrl').click ->
+    document_id = $(this).attr('id').match(/\d+/)
+    $('#actions-' + document_id).toggle('slow')

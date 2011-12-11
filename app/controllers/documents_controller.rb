@@ -26,7 +26,7 @@ class DocumentsController < ApplicationController
     @document.user = current_user
     @document.save
     
-   redirect_to @document.asset.url    
+   redirect_to @document.asset.url, :notice => "Download von #{@document.asset.filename} gestartet"
   end
   
   def free
@@ -86,6 +86,16 @@ class DocumentsController < ApplicationController
         format.json { render :json => @document.errors, :status => :unprocessable_entity }
       end
     end
+  end
+  
+  def assign
+    document = Document.find(params[:id])
+    user = User.find(params[:userid])
+    
+    document.user = user
+    document.save
+    
+    redirect_to root_path
   end
 
   # DELETE /documents/1

@@ -24,6 +24,10 @@ de:
       download: "Herunterladen"
       free: "Freigeben"
       upload: "Hochladen"
+      actionctrl: "Aktionen"
+      created_at: "Erstellt: %{date}"
+      updated_at: "Aktualisiert um %{date}"
+      assigned: "%{user} zugewiesen"
   number:
     human:
       storage_units:

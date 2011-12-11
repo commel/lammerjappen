@@ -1,10 +1,11 @@
 .item{:id => "document-#{document.id}", :class => "#{available(document)}", :"data-category" => "documents"}
   .filename= document.asset_file_name
-  .user= t('.assigned', :user => document.user.username)
+  .user= t('.assigned', :user => document.user.username) if document.user
   .available.invisible= document.available
   %time.updated_at{:datetime => "#{document.updated_at}"}
     = t('.updated_at', :date => document.updated_at)
-
-  = link_to t('.actionctrl'), '#', {:class => "actionctrl", :id => "actionctrl-#{document.id}"}
-  .actions{:id => "actions-#{document.id}"}
-    = render :partial => 'actions', :locals => { :document => document }
+  .actionctrl
+    .actionctrl-btn
+      = link_to t('.actionctrl'), '#', {:class => "actionctrl-lnk", :id => "actionctrl-#{document.id}"}
+    .docactions{:id => "docactions-#{document.id}"}
+      = render :partial => 'actions', :locals => { :document => document }

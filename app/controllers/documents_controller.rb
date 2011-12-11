@@ -25,14 +25,14 @@ class DocumentsController < ApplicationController
     @document.available = false
     @document.user = current_user
     @document.save
-    
-   redirect_to @document.asset.url, :notice => "Download von #{@document.asset.filename} gestartet"
+   
+    redirect_to @document.asset.url, :notice => "Download von #{@document.asset.name} gestartet"
   end
   
   def free
     @document = Document.find(params[:id])
     @document.available = true
-    @document.user = current_user
+    @document.user = nil
     @document.save
     
     redirect_to documents_path
@@ -58,7 +58,6 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(params[:document])
-    @document.user = current_user
 
     respond_to do |format|
       if @document.save
@@ -75,7 +74,8 @@ class DocumentsController < ApplicationController
   # PUT /documents/1.json
   def update
     @document = Document.find(params[:id])
-    @document.user = current_user
+    @document.user = nil
+    @document.available = true
     
     respond_to do |format|
       if @document.update_attributes(params[:document])

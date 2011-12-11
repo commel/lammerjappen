@@ -26,7 +26,7 @@ nav.documents {
 }
 
 .item {
-  width: 250px;
+  width: 200px;
   background-color: #aabbcc;
   margin: 10px;
   text-align: center;
@@ -88,10 +88,28 @@ nav.documents {
   display: none;
 }
 
-.actions {
+.docactions {
   display: none;
 }
 
 .invisible {
   display: none;
+}
+
+.controls {
+  display: block;
+  border: dotted 1px #000000;
+}
+
+.updateform {
+  display: none;
+}
+
+
+.actionctrl-btn {
+  background-color: #ddeeff;
+}
+
+.actionctrl {
+  background-color: #aabbcc;
 }

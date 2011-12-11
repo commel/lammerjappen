@@ -1,8 +1,11 @@
-.download
-  =link_to t('.download'), document if document.available
-.free
-  = link_to t('.free'), free_path(:id => document.id) if !document.available
-.assign
-  =link_to t('.assign'), assign_path(:id => document.id, :userid => current_user.id ) if current_user != document.user
-.upload
-  =link_to t('.upload'), edit_document_path(:id => document.id, :userid => current_user.id) if !document.available && current_user == document.user
+.controls
+  .download
+    =link_to t('.download'), download_path(:id => document.id), :class => 'button' if document.available
+  .free
+    = link_to t('.free'), free_path(:id => document.id) if !document.available
+  .assign
+    =link_to t('.assign'), assign_path(:id => document.id, :userid => current_user.id ) if !document.user || current_user != document.user
+  .upload
+    =link_to t('.upload'), '#', {:class => "toggle-update-form", :id => "toggle-updateform-#{document.id}"} if (!document.available && current_user == document.user)
+    .updateform{:id => "updateform-#{document.id}"}
+      = render :partial => 'upform', :locals => { :document => document }

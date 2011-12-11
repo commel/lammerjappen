@@ -3,7 +3,10 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 jQuery ->
   $('#container').isotope
-    layoutMode: 'fitRows'
+    layoutMode: 'cellsByRow',
+    cellsByRow:
+      columnWidth: 240,
+      rowHeight: 360
     sortBy: 'filename'
     sortAscending: true
     getSortData:
@@ -35,6 +38,10 @@ jQuery ->
   $('button#new').click ->
     $('#upform').toggle()
 
-  $('.actionctrl').click ->
+  $('.actionctrl-lnk').click ->
     document_id = $(this).attr('id').match(/\d+/)
-    $('#actions-' + document_id).toggle('slow')
+    $('#docactions-' + document_id).toggle('slow')
+
+  $('.toggle-update-form').click ->
+    document_id = $(this).attr('id').match(/\d+/)
+    $('#updateform-' + document_id).toggle('slow')

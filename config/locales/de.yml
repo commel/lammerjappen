@@ -2,6 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 de:
+  layouts:
+    application:
+      title: "Lammerjappen"
   activerecord:
     errors:
       models:
@@ -10,6 +13,11 @@ de:
             user:
               blank: "Der Benutzer ist nicht gesetzt!"
   documents:
+    actions:
+      download: "Datei herunterladen"
+      free: "Wieder freigeben"
+      upload: "Hochladen"
+      assign: "Mir zuweisen"
     index:
       title: "Dokumente für %{username}"
       filename: "Dateiname"
@@ -21,9 +29,6 @@ de:
       desc: "Absteigend"
       new: "Neues Dokument"
     document:
-      download: "Herunterladen"
-      free: "Freigeben"
-      upload: "Hochladen"
       actionctrl: "Aktionen"
       created_at: "Erstellt: %{date}"
       updated_at: "Aktualisiert um %{date}"

@@ -3,7 +3,7 @@
   .user= t('.assigned', :user => document.user.username) if document.user
   .available.invisible= document.available
   %time.updated_at{:datetime => "#{document.updated_at}"}
-    = t('.updated_at', :date => document.updated_at)
+    = t('.updated_at', :date => l(document.updated_at.localtime, :format => :short))
   .actionctrl
     .actionctrl-btn
       = link_to t('.actionctrl'), '#', {:class => "actionctrl-lnk", :id => "actionctrl-#{document.id}"}

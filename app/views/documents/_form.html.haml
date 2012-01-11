@@ -7,7 +7,7 @@
           %li= msg
 
   .field
-    = f.label :asset
+    = f.label t('.asset'), :asset
     = f.file_field :asset
   .actions
-    = f.submit 'Save'
+    = f.submit t('.save')

@@ -7,4 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.isotope.min
+//= require jquery-ui
+//= require notifier
 //= require_tree .

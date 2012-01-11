@@ -17,16 +17,13 @@ class DocumentsController < ApplicationController
   
   def download
     @document = Document.find(params[:id])
-
-    # ist das dokument derzeit verfügbar?
-    redirect_to documents_path, :notice => 'Das Dokument wird derzeit bearbeitet!' and return if !@document.available
-    
+   
     # speichern, wer das dokument gezogen hat und das dokument heruntergeladen hat
     @document.available = false
     @document.user = current_user
     @document.save
-   
-    redirect_to @document.asset.url, :notice => "Download von #{@document.asset.name} gestartet"
+
+    send_file @document.asset.path, :notice => "Download von #{@document.asset.name} gestartet."
   end
   
   def free
@@ -35,7 +32,7 @@ class DocumentsController < ApplicationController
     @document.user = nil
     @document.save
     
-    redirect_to documents_path
+    redirect_to documents_path, :notice => "Das Dokument wurde wieder freigegeben."
   end
 
   # GET /documents/new
@@ -61,7 +58,7 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to documents_path, :notice => 'Document was successfully created.' }
+        format.html { redirect_to documents_path, :notice => 'Das Dokument wurde angelegt.' }
         format.json { render :json => @document, :status => :created, :location => @document }
       else
         format.html { render :action => "new" }
@@ -79,7 +76,7 @@ class DocumentsController < ApplicationController
     
     respond_to do |format|
       if @document.update_attributes(params[:document])
-        format.html { redirect_to documents_path, :notice => 'Document was successfully updated.' }
+        format.html { redirect_to documents_path, :notice => 'Das Dokument wurde erfolgreich aktualisiert.' }
         format.json { head :ok }
       else
         format.html { render :action => "edit" }
@@ -95,7 +92,7 @@ class DocumentsController < ApplicationController
     document.user = user
     document.save
     
-    redirect_to root_path
+    redirect_to root_path, :notice => 'Das Dokument wurde mir zugewiesen.'
   end
 
   # DELETE /documents/1

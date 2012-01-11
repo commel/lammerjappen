@@ -5,6 +5,10 @@ de:
   layouts:
     application:
       title: "Lammerjappen"
+  time:
+    formats:
+      short: "%d.%m.%Y %H:%M Uhr"
+
   activerecord:
     errors:
       models:
@@ -13,6 +17,9 @@ de:
             user:
               blank: "Der Benutzer ist nicht gesetzt!"
   documents:
+    upform:
+      save: "Hochladen"
+      asset: "Dokument"
     actions:
       download: "Datei herunterladen"
       free: "Wieder freigeben"
@@ -31,7 +38,7 @@ de:
     document:
       actionctrl: "Aktionen"
       created_at: "Erstellt: %{date}"
-      updated_at: "Aktualisiert um %{date}"
+      updated_at: "Aktual. am %{date}"
       assigned: "%{user} zugewiesen"
   number:
     human:

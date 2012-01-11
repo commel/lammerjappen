@@ -6,7 +6,7 @@ jQuery ->
     layoutMode: 'cellsByRow',
     cellsByRow:
       columnWidth: 240,
-      rowHeight: 360
+      rowHeight: 150 
     sortBy: 'filename'
     sortAscending: true
     getSortData:
@@ -36,12 +36,28 @@ jQuery ->
     return false
 
   $('button#new').click ->
-    $('#upform').toggle()
+    $('#upform').dialog
+      height: 175,
+      width: 400,
+      modal: true,
+      title: "Neue Datei hochladen"
 
   $('.actionctrl-lnk').click ->
     document_id = $(this).attr('id').match(/\d+/)
-    $('#docactions-' + document_id).toggle('slow')
+    filename = $("#document-" + document_id).find("div.filename").text()
+    $('#docactions-' + document_id).dialog
+      height: 150,
+      width: 300,
+      modal: true,
+      title: "Dokument " + filename,
+      close: (event, ui) ->
+        location.reload(true)
 
   $('.toggle-update-form').click ->
     document_id = $(this).attr('id').match(/\d+/)
-    $('#updateform-' + document_id).toggle('slow')
+    filename = $("#document-" + document_id).find("div.filename").text()
+    $('#updateform-' + document_id).dialog
+      height: 175,
+      width: 400,
+      modal: true,
+      title: "Dokument " + filename + " erneut hochladen"
